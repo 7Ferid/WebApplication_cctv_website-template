@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication_cctv_website-template", "WebApplication_cctv_website-template.csproj", "{F7CEB8F1-EAF4-4291-8B65-19BCA1837713}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7CEB8F1-EAF4-4291-8B65-19BCA1837713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7CEB8F1-EAF4-4291-8B65-19BCA1837713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7CEB8F1-EAF4-4291-8B65-19BCA1837713}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7CEB8F1-EAF4-4291-8B65-19BCA1837713}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67C97496-FF6D-4987-B5E3-55802C7AC712}
+	EndGlobalSection
+EndGlobal
