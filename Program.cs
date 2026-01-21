@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebApplication_cctv_website_template.Context;
+using WebApplication_cctv_website_template.Models;
 
 namespace WebApplication_cctv_website_template
 {
@@ -15,6 +17,10 @@ namespace WebApplication_cctv_website_template
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
             });
+            builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+
+            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
             var app = builder.Build();
 
@@ -23,7 +29,7 @@ namespace WebApplication_cctv_website_template
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
           

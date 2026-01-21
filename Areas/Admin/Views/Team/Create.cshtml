@@ -1,0 +1,28 @@
+﻿@using WebApplication_cctv_website_template.ViewModels.TeamViewModels
+@model TeamCreateVM
+
+<div class="container">
+    <div class="row">
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control"  placeholder="Enter Name">
+              <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image"></label>
+                <input asp-for="Image" class="form-control">
+                <span asp-validation-for="Image"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PositionId"></label>
+             <select asp-for="PositionId" asp-items="ViewBag.Positions"></select>
+                <span asp-validation-for="PositionId"></span>
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>

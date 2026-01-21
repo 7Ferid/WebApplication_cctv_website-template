@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.General;
 using System.Data.Common;
 using System.Reflection;
 using WebApplication_cctv_website_template.Models;
 
 namespace WebApplication_cctv_website_template.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions options) : base(options)
         {

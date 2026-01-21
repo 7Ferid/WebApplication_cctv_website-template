@@ -1,0 +1,42 @@
+﻿@using WebApplication_cctv_website_template.ViewModels.TeamViewModels
+@model List<TeamGetVM>
+
+<div class="container">
+    <div class="row">
+        <div class="row-2">
+            <a asp-action="Create" class="btn btn-success">Create</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Position Name</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var team in Model)
+                {
+                      <tr>
+                    <th scope="row">@team.Id</th>
+                    <td><img src="~/img/@team.ImagePath" /> </td>
+                    <td>@team.Name</td>
+                    <td>@team.PositionName</td>
+
+                        <td>
+                            <a asp-action="Update" asp-route-id="@team.Id" class="btn btn-warning">Update</a>
+                            <a asp-action="Delete" asp-route-id="@team.Id" class="btn btn-warning">Delete</a>
+
+                        </td>
+                </tr> 
+                }
+             
+             
+            </tbody>
+        </table>
+
+    </div>
+</div>
