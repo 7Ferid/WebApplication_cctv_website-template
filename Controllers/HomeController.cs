@@ -9,6 +9,7 @@ namespace WebApplication_cctv_website_template.Controllers
         public IActionResult Index()
         {
             return View();
+
         }
         
     }
