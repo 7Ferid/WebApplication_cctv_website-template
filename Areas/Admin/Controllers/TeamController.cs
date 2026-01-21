@@ -10,6 +10,7 @@ using WebApplication_cctv_website_template.ViewModels.TeamViewModels;
 namespace WebApplication_cctv_website_template.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    //[Authorize(Roles ="Admin")]
     public class TeamController : Controller
     {
         private readonly AppDbContext _context;
@@ -96,6 +97,77 @@ namespace WebApplication_cctv_website_template.Areas.Admin.Controllers
             return RedirectToAction("Index");
 
         }
+        public async Task<IActionResult> Update(int id)
+        {
+            var product = await _context.Teams.FindAsync(id);
+            if (product is null)
+                return NotFound();
+
+            TeamUpdateVM vm = new()
+            {
+                Id = product.Id,
+                PositionId = product.PositionId,
+                Name = product.Name,
+              
+            };
+
+            await _sendPositionInViewbag();
+            return View(vm);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Update(TeamUpdateVM vm)
+        {
+            await _sendPositionInViewbag();
+
+
+            if (!ModelState.IsValid)
+                return View(vm);
+
+
+            var isExistcategory = await _context.Postitions.AnyAsync(x => x.Id == vm.PositionId);
+            if (!isExistcategory)
+            {
+                ModelState.AddModelError("CategoryId", "This category is not found");
+                return View(vm);
+            }
+            if (!vm.Image?.CheckSize(2) ?? false)
+            {
+                ModelState.AddModelError("Image", "Image's maximum size must be 2 mb");
+                return View(vm);
+            }
+            if (!vm.Image?.CheckType("image") ?? false)
+            {
+                ModelState.AddModelError("Image", "You can upload file in only image format ");
+                return View(vm);
+            }
+
+            var existProduct = await _context.Teams.FindAsync(vm.Id);
+            if (existProduct is null)
+                return BadRequest();
+
+
+
+            existProduct.Name = vm.Name;
+            existProduct.PositionId = vm.PositionId;
+        
+
+            if (vm.Image is { })
+            {
+                string newImagePath = await vm.Image.FileUpload(_folderpath);
+                string oldImagePath = Path.Combine(_folderpath, existProduct.ImagePath);
+                FileHelper.FileDelete(oldImagePath);
+                existProduct.ImagePath = newImagePath;
+            }
+
+            _context.Teams.Update(existProduct);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+
+        }
+
+
 
         private async Task _sendPositionInViewbag()
         {

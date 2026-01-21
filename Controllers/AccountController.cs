@@ -35,7 +35,7 @@ namespace WebApplication_cctv_website_template.Controllers
                 return View(vm);
             }
 
-           /* await _roleManager.AddToRoleAsync*/
+            await _userManager.AddToRoleAsync(user, "Member");
 
             await _signInManager.SignInAsync(user, false);
            return RedirectToAction("Index", "Home");
